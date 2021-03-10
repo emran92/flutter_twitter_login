@@ -15,15 +15,15 @@ class _MyAppState extends State<MyApp> {
     consumerSecret: 'ZECGsI6UUDBEUVGkJe4S5vd0FGqGxC3wMJCgsXgPRfjSwRFnyH',
   );
 
-  String _message = 'Logged out.';
+  String? _message = 'Logged out.';
 
   void _login() async {
     final TwitterLoginResult result = await twitterLogin.authorize();
-    String newMessage;
+    String? newMessage;
 
     switch (result.status) {
       case TwitterLoginStatus.loggedIn:
-        newMessage = 'Logged in! username: ${result.session.username}';
+        newMessage = 'Logged in! username: ${result.session!.username}';
         break;
       case TwitterLoginStatus.cancelledByUser:
         newMessage = 'Login cancelled by user.';
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Text(_message),
+              new Text(_message!),
               new RaisedButton(
                 child: new Text('Log in'),
                 onPressed: _login,
